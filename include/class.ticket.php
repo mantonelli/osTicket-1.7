@@ -144,13 +144,13 @@ class Ticket{
         
         return true;
     }
-        
+
     function reload() {
         return $this->load();
     }
-    
+
     function isOpen() {
-        return (strcasecmp($this->getStatus(),'Open')==0);
+        return (strcasecmp($this->getStatus(),'Aberto')==0);
     }
 
     function isReopened() {
@@ -158,7 +158,7 @@ class Ticket{
     }
 
     function isClosed() {
-        return (strcasecmp($this->getStatus(),'Closed')==0);
+        return (strcasecmp($this->getStatus(),'Encerrado')==0);
     }
 
     function isAssigned() {

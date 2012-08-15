@@ -81,46 +81,46 @@ $query="$qselect $qfrom $qwhere $qgroup ORDER BY $order_by $order LIMIT ".$pageN
 //echo $query;
 $res = db_query($query);
 $showing=($res && db_num_rows($res))?$pageNav->showing():"";
-$showing.=($status)?(' '.ucfirst($status).' Tickets'):' All Tickets';
+$showing.=($status)?(' '.ucfirst($status).' Chamados'):' Todos ';
 if($search)
-    $showing="Search Results: $showing";
+    $showing="Resultados da pesquisa: $showing";
 
 $negorder=$order=='DESC'?'ASC':'DESC'; //Negate the sorting
 
 ?>
-<h1>My Tickets</h1>
+<h1>Meus Chamados</h1>
 <br>
 <form action="tickets.php" method="get" id="ticketSearchForm">
     <input type="hidden" name="a"  value="search">
     <input type="text" name="q" size="20" value="<?php echo Format::htmlchars($_REQUEST['q']); ?>">
     <select name="status">
-        <option value="">&mdash; Any Status &mdash;</option>
-        <option value="open" <?php echo ($status=='open')?'selected="selected"':'';?>>Open</option>
-        <option value="closed" <?php echo ($status=='closed')?'selected="selected"':'';?>>Closed</option>
+        <option value="">&mdash; Todos &mdash;</option>
+        <option value="open" <?php echo ($status=='open')?'selected="selected"':'';?>>Abertos</option>
+        <option value="closed" <?php echo ($status=='closed')?'selected="selected"':'';?>>Encerrados</option>
     </select>
-    <input type="submit" value="Go">
+    <input type="submit" value="Pesquisar">
 </form>
-<a class="refresh" href="<?php echo $_SERVER['REQUEST_URI']; ?>">Refresh</a>
+<a class="refresh" href="<?php echo $_SERVER['REQUEST_URI']; ?>">Atualizar</a>
 <table id="ticketTable" width="800" border="0" cellspacing="0" cellpadding="0">
     <caption><?php echo $showing; ?></caption>
     <thead>
         <tr>
             <th width="70" nowrap>
-                <a href="tickets.php?sort=ID&order=<?php echo $negorder; ?><?php echo $qstr; ?>" title="Sort By Ticket ID">Ticket #</a>
+                <a href="tickets.php?sort=ID&order=<?php echo $negorder; ?><?php echo $qstr; ?>" title="Ordenar por Chamado">Chamado #</a>
             </th>
             <th width="100">
-                <a href="tickets.php?sort=date&order=<?php echo $negorder; ?><?php echo $qstr; ?>" title="Sort By Date">Create Date</a>
+                <a href="tickets.php?sort=date&order=<?php echo $negorder; ?><?php echo $qstr; ?>" title="Ordenar por Data">Criado em</a>
             </th>
             <th width="80">
-                <a href="tickets.php?sort=status&order=<?php echo $negorder; ?><?php echo $qstr; ?>" title="Sort By Status">Status</a>
+                <a href="tickets.php?sort=status&order=<?php echo $negorder; ?><?php echo $qstr; ?>" title="Ordenar por Situação">Situação</a>
             </th>
             <th width="240">
-                <a href="tickets.php?sort=subj&order=<?php echo $negorder; ?><?php echo $qstr; ?>" title="Sort By Subject">Subject</a>
+                <a href="tickets.php?sort=subj&order=<?php echo $negorder; ?><?php echo $qstr; ?>" title="Ordenar por Assunto">Assunto</a>
             </th>
             <th width="150">
-                <a href="tickets.php?sort=dept&order=<?php echo $negorder; ?><?php echo $qstr; ?>" title="Sort By Department">Department</a>
+                <a href="tickets.php?sort=dept&order=<?php echo $negorder; ?><?php echo $qstr; ?>" title="Ordenar por Departamento">Departamento</a>
             </th>
-            <th width="150">Phone Number</th>
+            <th width="150">Telefone</th>
         </tr>
     </thead>
     <tbody>
@@ -166,6 +166,6 @@ $negorder=$order=='DESC'?'ASC':'DESC'; //Negate the sorting
 </table>
 <?php
 if($res && $num>0) { 
-    echo '<div>&nbsp;Page:'.$pageNav->getPageLinks().'&nbsp;</div>';
+    echo '<div>&nbsp;Página:'.$pageNav->getPageLinks().'&nbsp;</div>';
 }
 ?>

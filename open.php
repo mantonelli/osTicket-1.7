@@ -31,7 +31,7 @@ if($_POST):
 
     //Ticket::create...checks for errors..
     if(($ticket=Ticket::create($_POST,$errors,SOURCE))){
-        $msg='Support ticket request created';
+        $msg='Chamado criado com sucesso.';
         //Upload attachments...         
         if($cfg->allowOnlineAttachments()
                 && $_FILES['attachments']
@@ -51,7 +51,7 @@ if($_POST):
         //Thank the user and promise speedy resolution!
         $inc='thankyou.inc.php';
     }else{
-        $errors['err']=$errors['err']?$errors['err']:'Unable to create a ticket. Please correct errors below and try again!';
+        $errors['err']=$errors['err']?$errors['err']:'Não foi possível criar o chamado. Corrija os erros abaixo e tente novamente!';
     }
 endif;
 

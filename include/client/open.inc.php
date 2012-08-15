@@ -10,14 +10,14 @@ if($thisclient && $thisclient->isValid()) {
 
 $info=($_POST && $errors)?Format::htmlchars($_POST):$info;
 ?>
-<h1>Open a New Ticket</h1>
-<p>Please fill in the form below to open a new ticket.</p>
+<h1>Criar Novo Chamado</h1>
+<p>Preencha o formulário abaixo para criar um novo chamado.</p>
 <form id="ticketForm" method="post" action="open.php" enctype="multipart/form-data">
   <?php csrf_token(); ?>
   <input type="hidden" name="a" value="open">
   <table width="800" cellpadding="1" cellspacing="0" border="0">
     <tr>
-        <th class="required" width="160">Full Name:</th>
+        <th class="required" width="160">Nome Completo:</th>
         <td>
             <?php
             if($thisclient && $thisclient->isValid()) {
@@ -30,7 +30,7 @@ $info=($_POST && $errors)?Format::htmlchars($_POST):$info;
         </td>
     </tr>
     <tr>
-        <th class="required" width="160">Email Address:</th>
+        <th class="required" width="160">Email:</th>
         <td>
             <?php
             if($thisclient && $thisclient->isValid()) { 
@@ -43,21 +43,21 @@ $info=($_POST && $errors)?Format::htmlchars($_POST):$info;
         </td>
     </tr>
     <tr>
-        <th>Telephone:</th>
+        <th>Telefone:</th>
         <td>
 
             <input id="phone" type="text" name="phone" size="17" value="<?php echo $info['phone']; ?>">
-            <label for="ext" class="inline">Ext.:</label>
+            <label for="ext" class="inline">Ramal:</label>
             <input id="ext" type="text" name="phone_ext" size="3" value="<?php echo $info['phone_ext']; ?>">
             <font class="error">&nbsp;<?php echo $errors['phone']; ?>&nbsp;&nbsp;<?php echo $errors['phone_ext']; ?></font>
         </td>   
     </tr>
     <tr><td colspan=2>&nbsp;</td></tr>
     <tr>
-        <td class="required">Help Topic:</td>
+        <td class="required">Tópico:</td>
         <td>
             <select id="topicId" name="topicId">
-                <option value="" selected="selected">&mdash; Select a Help Topics &mdash;</option>
+                <option value="" selected="selected">&mdash; Selecione um tópico de ajuda &mdash;</option>
                 <?php
                 if($topics=Topic::getPublicHelpTopics()) {
                     foreach($topics as $id =>$name) {
@@ -73,16 +73,16 @@ $info=($_POST && $errors)?Format::htmlchars($_POST):$info;
         </td>
     </tr>
     <tr>
-        <td class="required">Subject:</td>
+        <td class="required">Assunto:</td>
         <td>
             <input id="subject" type="text" name="subject" size="40" value="<?php echo $info['subject']; ?>">
             <font class="error">*&nbsp;<?php echo $errors['subject']; ?></font>
         </td>
     </tr>
     <tr>
-        <td class="required">Message:</td>
+        <td class="required">Mensagem:</td>
         <td>
-            <div><em>Please provide as much details as possible so we can best assist you.</em> <font class="error">*&nbsp;<?php echo $errors['message']; ?></font></div>
+            <div><em>Descreva o problema com a maior quantidade de detalhes possível.</em> <font class="error">*&nbsp;<?php echo $errors['message']; ?></font></div>
             <textarea id="message" cols="60" rows="8" name="message"><?php echo $info['message']; ?></textarea>
         </td>
     </tr>
@@ -90,7 +90,7 @@ $info=($_POST && $errors)?Format::htmlchars($_POST):$info;
     <?php if(($cfg->allowOnlineAttachments() && !$cfg->allowAttachmentsOnlogin())
             || ($cfg->allowAttachmentsOnlogin() && ($thisclient && $thisclient->isValid()))) { ?>
     <tr>
-        <td>Attachments:</td>
+        <td>Anexos:</td>
         <td>
             <div class="uploads"></div><br>
             <input type="file" class="multifile" name="attachments[]" id="attachments" size="30" value="" />
@@ -102,7 +102,7 @@ $info=($_POST && $errors)?Format::htmlchars($_POST):$info;
     <?php
     if($cfg->allowPriorityChange() && ($priorities=Priority::getPriorities())) { ?>
     <tr>
-        <td>Ticket Priority:</td>
+        <td>Prioridade:</td>
         <td>
             <select id="priority" name="priorityId">
                 <?php
@@ -141,8 +141,8 @@ $info=($_POST && $errors)?Format::htmlchars($_POST):$info;
     <tr><td colspan=2>&nbsp;</td></tr>
   </table>
   <p style="padding-left:150px;">
-        <input type="submit" value="Create Ticket">
-        <input type="reset" value="Reset">
-        <input type="button" value="Cancel" onClick='window.location.href="index.php"'>
+        <input type="submit" value="Criar Chamado">
+        <input type="reset" value="Limpar">
+        <input type="button" value="Cancelar" onClick='window.location.href="index.php"'>
   </p>
 </form>
