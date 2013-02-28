@@ -28,7 +28,7 @@ if($_REQUEST['id']) {
     if(!($ticket=Ticket::lookup($_REQUEST['id'])))
          $errors['err']='Unknown or invalid ticket ID';
     elseif(!$ticket->checkStaffAccess($thisstaff)) {
-        $errors['err']='Accesso negado. Contact admin if you believe this is in error';
+        $errors['err']='Access denied. Contact admin if you believe this is in error';
         $ticket=null; //Clear ticket obj.
     }
 }
